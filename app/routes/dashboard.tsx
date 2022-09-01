@@ -2,8 +2,10 @@ import {
   LoaderFunction
 } from "@remix-run/node";
 import {
-  Outlet,
+  Outlet
 } from "@remix-run/react";
+
+import { Layout } from "~/components/layout";
 
 export const loader: LoaderFunction = async ({ request }) => {
   // Fake some loading
@@ -11,14 +13,14 @@ export const loader: LoaderFunction = async ({ request }) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   // Completed server-side tasks, returning nothing
-  return null;
+  return null
 }
 
 export default function Dashboard() {
   return (
-    <div>
+    <Layout>
       <h1>Dashboard</h1>
       <Outlet />
-    </div>
+    </Layout>
   );
 }
