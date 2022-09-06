@@ -1,10 +1,14 @@
 import {
+  json,
   LoaderFunction
 } from "@remix-run/node";
 import {
   Link,
   Outlet,
+  useLoaderData
 } from "@remix-run/react";
+
+import { getGames } from  '~/utils/games.server';
 
 import { Layout } from "~/components/layout";
 import { Hero } from "~/components/hero";
@@ -12,15 +16,18 @@ import { Leaderboard } from "~/components/leaderboard";
 import { Export } from "~/components/export";
 
 export const loader: LoaderFunction = async ({ request }) => {
-  // Fake some loading
-  // Used to check a user is authenticated, fetch data, etc
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  // Fetch the games data
+  const games = await getGames();
 
-  // Completed server-side tasks, returning nothing
-  return null;
+  // Return the games data
+  return json({ games });
 }
 
 export default function Dashboard() {
+  const { games }: {
+    games: any[]
+  } = useLoaderData();
+
   return (
     <Layout>
       <main className="col-span-full sm:col-span-2 sm:self-start mb-10 sm:mb-0">
