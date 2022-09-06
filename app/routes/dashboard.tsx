@@ -8,7 +8,7 @@ import {
   useLoaderData
 } from "@remix-run/react";
 
-import { getGames } from  '~/utils/games.server';
+import { getGames, getLeaders } from  '~/utils/games.server';
 
 import { Layout } from "~/components/layout";
 import { Hero } from "~/components/hero";
@@ -18,14 +18,16 @@ import { Export } from "~/components/export";
 export const loader: LoaderFunction = async ({ request }) => {
   // Fetch the games data
   const games = await getGames();
+  const leaders = await getLeaders();
 
   // Return the games data
-  return json({ games });
+  return json({ games, leaders });
 }
 
 export default function Dashboard() {
-  const { games }: {
-    games: any[]
+  const { games, leaders }: {
+    games: any[],
+    leaders: any[]
   } = useLoaderData();
 
   return (
