@@ -7,10 +7,10 @@ export function Export() {
           Export
         </span>
       </h2>
-      <p>
+      <p className="mb-2.5">
         Share your glory with the world by printing or exporting the results.
       </p>
-      <ul className="mt-2.5 grid grid-cols-2 gap-2.5 sm:gap-5">
+      <ul className="grid grid-cols-2 gap-2.5 sm:gap-5">
         <li className="">
           <button className="w-full flex flex-row flex-nowrap items-center text-sm font-bold" type="button" onClick={() => console.log('Export')}>
             <span className="block p-2 bg-indigo-600 text-white">
