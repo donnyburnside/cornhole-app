@@ -1,6 +1,8 @@
 import type { ActionFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 
+import { saveGame } from  '~/utils/games.server';
+
 import { NewGameModal } from "~/components/new-game-modal";
 
 export const action: ActionFunction = async ({
@@ -32,7 +34,7 @@ export const action: ActionFunction = async ({
     return prev;
   }, {});
 
-  console.log('Save Game:', updatedData);
+  await saveGame(updatedData);
 
   return redirect("/dashboard");
 };
